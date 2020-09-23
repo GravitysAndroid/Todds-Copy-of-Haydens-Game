@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SQLite4Unity3d;
 
 public class RoomNavigation : MonoBehaviour
 {
     public Room currentRoom;
 
-    Dictionary<string, Room> exitDictionary = GameModel.exitDictionary;
+    Dictionary<string, Room> exitDictionary { get { return GameModel.exitDictionary; } set { GameModel.exitDictionary = value; } }
     GameController controller;
     private void Awake()
     {
@@ -46,4 +47,12 @@ public class RoomNavigation : MonoBehaviour
     {
         exitDictionary.Clear();
     }
+}
+
+public class RoomNavigationDTO // this will keep track of the current room 
+{
+    [PrimaryKey, AutoIncrement]
+    int ID { get; set; } 
+    int CurrentRoomID { get; set; }
+
 }

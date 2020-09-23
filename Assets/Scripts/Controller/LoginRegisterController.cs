@@ -33,7 +33,7 @@ public class PasswordRegController : MonoBehaviour
 
     public void RegisterPlayer()
     {
-        GameModel.RegisterPlayer(Username.text, Password.text);
+        //GameModel.RegisterPlayer(Username.text, Password.text);
         HidePanels();
         SceneManager.LoadScene("MainScene");
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SQLite4Unity3d;
 
 [System.Serializable]
 public class Interaction 
@@ -10,4 +11,12 @@ public class Interaction
     [TextArea]
     public string textResponse;
     public ActionResponse actionResponse;
+}
+
+public class InteractionDTO {
+    [PrimaryKey,AutoIncrement]
+    public int ID { get; set; }
+    public string textResponse { get; set; }
+    public string ActionResponseTypeName { get; set; } // these are the type name of the response - specialisations of the abstract class
+    public string InputActionTypeName { get; set; }
 }

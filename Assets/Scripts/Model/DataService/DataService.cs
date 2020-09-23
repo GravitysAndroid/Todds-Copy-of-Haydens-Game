@@ -1,4 +1,4 @@
-﻿/*using Assets.Scripts.Model;
+﻿using Assets.Scripts.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -70,31 +70,6 @@ public class DataService
     }
 
 
-    public void SaveLocations(List<Location> Locations)
-    {
-        _connection.DropTable<Location>();
-        _connection.CreateTable<Location>();
-        _connection.InsertAll(Locations);
-    }
-
-    public List<Location> LoadLocations()
-    {
-        return _connection.Table<Location>().ToList<Location>();
-    }
-
-    public bool HaveLocations()
-    {
-        try
-        {
-            return LoadLocations().Count > 0;
-        }
-        catch
-        {
-            return false;
-        }
-
-    }
-
 	public void CreateDB()
     {
         // remove these once testing is sorted
@@ -103,87 +78,9 @@ public class DataService
         // _connection.DropTable<Player>();
 
         // creating the schema
-        _connection.CreateTable<Location>();
-        _connection.CreateTable<ToFrom>();
-        _connection.CreateTable<Player>();
+
 
     }
 
-    // Locations and their relationships 
-    public IEnumerable<Location> GetLocations()
-    {
-        return _connection.Table<Location>();
-    }
 
-    public bool haveLocations()
-    {
-        return _connection.Table<Location>().Count() > 0;
-    }
-
-    public ToFrom GetToFrom(int pFromID, string pDirection)
-    {
-        return _connection.Table<ToFrom>().Where(tf => tf.FromID == pFromID
-                                                      && tf.Direction == pDirection).FirstOrDefault();
-    }
-
-    public Location GetLocation(int pLocationID)
-    {
-        return _connection.Table<Location>().Where(l => l.Id == pLocationID).FirstOrDefault();
-    }
-
-    public Location GetPlayerLocation(Player aPlayer)
-    {
-        return GetLocation(aPlayer.LocationId);
-    }
-    public Location storeNewLocation(string pName, string pStory)
-    {
-        Location newLocation = new Location
-        {
-            Name = pName,
-            Story = pStory
-        };
-        _connection.Insert(newLocation); // Store the location 
-        return newLocation;  // return the location
-    }
-    public Location storeLocation(Location pLocation)
-    {
-        _connection.InsertOrReplace(pLocation); // Store the location 
-        return pLocation;
-    }
-
-
-    public void storeFromTo(int pFromID, int pToID, string pDirection)
-    {
-        ToFrom f = new ToFrom
-        {
-            ToID = pToID,
-            FromID = pFromID,
-            Direction = pDirection
-        };
-        _connection.Insert(f);
-    }
-
-
-    // Player
-    public Player storeNewPlayer(string pName, string pPassword,
-                            int pLocationId, int pHealth,
-                            int pWealth)
-    {
-        Player player = new Player
-        {
-            Name = pName,
-            Password = pPassword,
-            LocationId = pLocationId,
-            Health = pHealth,
-            Wealth = pWealth
-        };
-        _connection.InsertOrReplace(player);
-        return player;
-    }
-
-    public Player getPlayer(string pPlayerName)
-    {
-        return _connection.Table<Player>().Where(x => x.Name == pPlayerName).FirstOrDefault();
-    }
 }
-*/

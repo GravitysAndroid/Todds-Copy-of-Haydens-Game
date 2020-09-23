@@ -8,13 +8,13 @@ public class InteractableItems : MonoBehaviour
 {
     public List<InteractableObject> useableItemList;
     /*Creates dictionaries for the examine, take and use action*/
-    public Dictionary<string, string> examineDictionary = GameModel.examineDictionary;
-    public Dictionary<string, string> takeDictionary = GameModel.takeDictionary;
-    Dictionary<string, ActionResponse> useDictionary = GameModel.useDictionary;
+    public Dictionary<string, string> examineDictionary { get { return GameModel.examineDictionary; } set { GameModel.examineDictionary = value; } }
+    public Dictionary<string, string> takeDictionary { get { return GameModel.takeDictionary; } set { GameModel.takeDictionary = value; } }
+    Dictionary<string, ActionResponse> useDictionary { get { return GameModel.useDictionary; } set { GameModel.useDictionary = value; } }
 
-    [HideInInspector] public List<string> nounsInRoom = GameModel.nounsInRoom;
+    [HideInInspector] public List<string> nounsInRoom { get { return GameModel.nounsInRoom; } set { GameModel.nounsInRoom = value; } }
 
-    public List<string> nounsInInventory = GameModel.nounsInInventory; //= new List<string>();
+    public List<string> nounsInInventory { get { return GameModel.nounsInInventory; } set { GameModel.nounsInInventory = value; } } //= new List<string>();
     GameController controller;
     //InventoryController invController;
     

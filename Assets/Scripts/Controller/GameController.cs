@@ -9,10 +9,10 @@ public class GameController : MonoBehaviour
     public Text displayText;
     public InputAction[] inputActions;
 
-    [HideInInspector] public RoomNavigation roomNavigation;
+    [HideInInspector] public RoomNavigation roomNavigation { get { return GameModel.roomNavigation; } set { GameModel.roomNavigation = value; } }
     /*Creates a list for all of the interactions in the room*/
-    [HideInInspector] public List<string> interactionDescriptionsInRoom = GameModel.interactionDescriptionsInRoom;
-    [HideInInspector] public InteractableItems interactableItems;
+    [HideInInspector] public List<string> interactionDescriptionsInRoom{ get { return GameModel.interactionDescriptionsInRoom; } set { value = GameModel.interactionDescriptionsInRoom; } }
+    [HideInInspector] public InteractableItems interactableItems { get { return GameModel.interactableItems; } set { GameModel.interactableItems = value; } }
 
     /*Creates a list to display as the story log, the user can look at previous interactions*/
     //List<string> actionLog = GameModel.actionLog;
@@ -22,8 +22,19 @@ public class GameController : MonoBehaviour
     {
         //GameObject.DontDestroyOnLoad(gameObject);
         /*When the game starts it populates the items and rooms*/
-        interactableItems = GetComponent<InteractableItems>();
-        roomNavigation = GetComponent<RoomNavigation>();
+
+        // Here we have an opportunity to store and retreive 
+        // information into a dataservice. Hence we can possibly 
+        // work towards changing the items and the rooms from 
+        // that data service.
+
+        // GameMode.GetGame assigns values to the interactableItems, roomNavigation
+        // that includes a current room.
+        if (!GameModel.GetGame())
+        {
+            interactableItems = GetComponent<InteractableItems>();
+            roomNavigation = GetComponent<RoomNavigation>();
+        }
     }
 
     // Start is called before the first frame update
