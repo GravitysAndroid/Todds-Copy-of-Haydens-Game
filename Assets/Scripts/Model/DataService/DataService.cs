@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using SQLite4Unity3d;
+using System.Linq;
 #if !UNITY_EDITOR
 using System.Collections;
 using System.IO;
@@ -11,7 +12,6 @@ using System.IO;
 
 public class DataService
 {
-
     private SQLiteConnection _connection;
 
     public DataService(string DatabaseName)
@@ -66,7 +66,6 @@ public class DataService
 #endif
         _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
         Debug.Log("Final PATH: " + dbPath);
-
     }
 
 
@@ -79,8 +78,73 @@ public class DataService
 
         // creating the schema
 
-
+        _connection.CreateTable<Player>();
+        _connection.CreateTable<PlayerInventory>();
+        _connection.CreateTable<Room>();
     }
 
+    public void storeInventory(int pPlayerID, List<string> pPlayerInventoryList)
+    {
+        foreach(string anItem in pPlayerInventoryList)
+        {
+            PlayerInventory anInventoryItem = new PlayerInventory
+            {
+                InventoryItem = anItem,
+                PlayerID = pPlayerID
+            };
+            _connection.InsertOrReplace(anInventoryItem);
+        }
+    }
 
+    public List<string> getInventory(int pPlayerID)
+    {
+        List<string> inventoryItemList = new List<string>();
+        foreach(PlayerInventory anItem in _connection.Table<PlayerInventory>().Where(inventory => inventory.PlayerID == pPlayerID).ToList())
+        {
+            inventoryItemList.Add(anItem.InventoryItem);   
+        }
+        return inventoryItemList;
+    }
+
+    public void storePlayer(Player pPlayer)
+    {
+            _connection.InsertOrReplace(pPlayer);
+    }
+
+    public Player getPlayer(string pPlayerName, string pPassword)
+    {
+        return _connection.Table<Player>().Where(player => player.Name == pPlayerName && player.Password == pPassword).FirstOrDefault();
+    }
+
+    public IEnumerable<Room> GetLocations()
+    {
+        return _connection.Table<Room>();
+    }
+
+    public Room GetPlayerLocation(Player aPlayer)
+    {
+        return GetLocation(aPlayer.RoomName);
+    }
+
+    public Room GetLocation(string pRoomName)
+    {
+        return _connection.Table<Room>().Where(l => l.roomName == pRoomName).FirstOrDefault();
+    }
+
+    public Player storeNewPlayer(string pName, string pPassword,
+                           int pLocationId, int pHealth,
+                           int pWealth)
+    {
+        Player player = new Player
+        {
+            Name = pName,
+            Password = pPassword,
+            RoomName= pRoomName,
+            //Health = pHealth,
+            //Wealth = pWealth
+
+        };
+        _connection.InsertOrReplace(player);
+        return player;
+    }
 }
