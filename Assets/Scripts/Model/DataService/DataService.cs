@@ -108,7 +108,7 @@ public class DataService
 
     public void storePlayer(Player pPlayer)
     {
-            _connection.InsertOrReplace(pPlayer);
+        _connection.InsertOrReplace(pPlayer);
     }
 
     public Player getPlayer(string pPlayerName, string pPassword)
@@ -116,35 +116,35 @@ public class DataService
         return _connection.Table<Player>().Where(player => player.Name == pPlayerName && player.Password == pPassword).FirstOrDefault();
     }
 
-    public IEnumerable<Room> GetLocations()
-    {
-        return _connection.Table<Room>();
-    }
+    //public IEnumerable<Room> GetLocations()
+    //{
+    //    return _connection.Table<Room>();
+    //}
 
-    public Room GetPlayerLocation(Player aPlayer)
-    {
-        return GetLocation(aPlayer.RoomName);
-    }
+    //public Room GetPlayerLocation(Player aPlayer)
+    //{
+    //    return GetLocation(aPlayer.RoomName);
+    //}
 
-    public Room GetLocation(string pRoomName)
-    {
-        return _connection.Table<Room>().Where(l => l.roomName == pRoomName).FirstOrDefault();
-    }
+    //public Room GetLocation(string pRoomName)
+    //{
+    //    return _connection.Table<Room>().Where(l => l.roomName == pRoomName).FirstOrDefault();
+    //}
 
-    public Player storeNewPlayer(string pName, string pPassword,
-                           int pLocationId, int pHealth,
-                           int pWealth)
-    {
-        Player player = new Player
-        {
-            Name = pName,
-            Password = pPassword,
-            RoomName= pRoomName,
-            //Health = pHealth,
-            //Wealth = pWealth
+    //public Player storeNewPlayer(string pName, string pPassword,
+    //                       int pLocationId, int pHealth,
+    //                       int pWealth)
+    //{
+    //    Player player = new Player
+    //    {
+    //        Name = pName,
+    //        Password = pPassword,
+    //        RoomName= pRoomName,
+    //        //Health = pHealth,
+    //        //Wealth = pWealth
 
-        };
-        _connection.InsertOrReplace(player);
-        return player;
-    }
+    //    };
+    //    _connection.InsertOrReplace(player);
+    //    return player;
+    //}
 }
