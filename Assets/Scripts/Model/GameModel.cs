@@ -65,32 +65,32 @@ namespace Assets.Scripts.Model
             AllBad
         }
 
-        //public static PasswdMode CheckPassword(string pPlayerName, string pPassword)
-        //{
-        //    PasswdMode result = GameModel.PasswdMode.AllBad;
-        //    Player aPlayer = ds.getPlayer(pPlayerName, pPassword);
-        //    if (aPlayer != null)
-        //    {
-        //        if (aPlayer.Password == pPassword)
-        //        {
-        //            result = GameModel.PasswdMode.OK;
-        //            GameModel.currentPlayer = aPlayer; // << WATCHOUT THIS IS A SIDE EFFECT
-        //            GameModel.currentLocale = GameModel.ds.GetPlayerLocation(GameModel.currentPlayer);
-        //        }
-        //        else
-        //        {
-        //            result = GameModel.PasswdMode.NeedPassword;
-        //        }
-        //    }
-        //    else
-        //        result = GameModel.PasswdMode.NeedName;
-        //        return result;
-        //}
+        public static PasswdMode CheckPassword(string pPlayerName, string pPassword)
+        {
+            PasswdMode result = GameModel.PasswdMode.AllBad;
+            Player aPlayer = ds.getPlayer(pPlayerName, pPassword);
+            if (aPlayer != null)
+            {
+                if (aPlayer.Password == pPassword)
+                {
+                    result = GameModel.PasswdMode.OK;
+                    GameModel.currentPlayer = aPlayer; // << WATCHOUT THIS IS A SIDE EFFECT
+                    GameModel.currentLocale = GameModel.ds.GetPlayerLocation(GameModel.currentPlayer);
+                }
+                else
+                {
+                    result = GameModel.PasswdMode.NeedPassword;
+                }
+            }
+            else
+                result = GameModel.PasswdMode.NeedName;
+                return result;
+        }
 
-        //public static void RegisterPlayer(string pName, string pPassword)
-        //{
-        //    GameModel.currentPlayer = GameModel.ds.storeNewPlayer(pName, pPassword, GameModel.currentLocale.roomName);
-        //}
+        public static void RegisterPlayer(string pName, string pPassword)
+        {
+            GameModel.currentPlayer = GameModel.ds.storeNewPlayer(pName, pPassword, GameModel.currentLocale.roomName);
+        }
 
         public static void SetupGame()
         {

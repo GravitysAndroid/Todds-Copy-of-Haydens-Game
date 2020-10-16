@@ -116,35 +116,30 @@ public class DataService
         return _connection.Table<Player>().Where(player => player.Name == pPlayerName && player.Password == pPassword).FirstOrDefault();
     }
 
-    //public IEnumerable<Room> GetLocations()
-    //{
-    //    return _connection.Table<Room>();
-    //}
+    public IEnumerable<Room> GetLocations()
+    {
+        return _connection.Table<Room>();
+    }
 
-    //public Room GetPlayerLocation(Player aPlayer)
-    //{
-    //    return GetLocation(aPlayer.RoomName);
-    //}
+    public Room GetPlayerLocation(Player aPlayer)
+    {
+        return GetLocation(aPlayer.Room);
+    }
 
-    //public Room GetLocation(string pRoomName)
-    //{
-    //    return _connection.Table<Room>().Where(l => l.roomName == pRoomName).FirstOrDefault();
-    //}
+    public Room GetLocation(string pRoom)
+    {
+        return _connection.Table<Room>().Where(l => l.roomName == pRoom).FirstOrDefault();
+    }
 
-    //public Player storeNewPlayer(string pName, string pPassword,
-    //                       int pLocationId, int pHealth,
-    //                       int pWealth)
-    //{
-    //    Player player = new Player
-    //    {
-    //        Name = pName,
-    //        Password = pPassword,
-    //        RoomName= pRoomName,
-    //        //Health = pHealth,
-    //        //Wealth = pWealth
-
-    //    };
-    //    _connection.InsertOrReplace(player);
-    //    return player;
-    //}
+    public Player storeNewPlayer(string pName, string pPassword, string pRoom)
+    {
+        Player player = new Player
+        {
+            Name = pName,
+            Password = pPassword,
+            Room = pRoom
+        };
+        _connection.InsertOrReplace(player);
+        return player;
+    }
 }

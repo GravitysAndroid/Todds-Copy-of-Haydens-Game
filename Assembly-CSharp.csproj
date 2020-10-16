@@ -66,7 +66,7 @@
     <Compile Include="Assets\Scripts\Controller\ButtonManager.cs" />
     <Compile Include="Assets\Scripts\Controller\GameController.cs" />
     <Compile Include="Assets\Scripts\Controller\InventoryViewer.cs" />
-    <Compile Include="Assets\Scripts\Controller\LoginRegisterController.cs" />
+    <Compile Include="Assets\Scripts\Controller\PasswordRegController.cs" />
     <Compile Include="Assets\Scripts\Controller\RoomNavigation.cs" />
     <Compile Include="Assets\Scripts\Controller\ShowHidePanels\PanelGameShow.cs" />
     <Compile Include="Assets\Scripts\Controller\ShowHidePanels\PanelHideLoginError.cs" />
