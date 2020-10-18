@@ -11,6 +11,7 @@ public class PasswordRegController : MonoBehaviour
     public GameObject PasspromptPanel;
     public InputField Playername;
     public InputField Password;
+    public GameObject MainGame;
 
     private void HidePanels()
     {
@@ -35,13 +36,12 @@ public class PasswordRegController : MonoBehaviour
     }
     public void CheckPassword()
     {
-
         HidePanels();
         switch (GameModel.CheckPassword(Playername.text, Password.text))
         {
             case GameModel.PasswdMode.OK:
                 HidePanels();
-                SceneManager.LoadScene("TutMS2");
+                MainGame.SetActive(true);
                 break;
             case GameModel.PasswdMode.NeedName:
                 ShowRegPanel();
@@ -56,7 +56,7 @@ public class PasswordRegController : MonoBehaviour
     {
         GameModel.RegisterPlayer(Playername.text, Password.text);
         HidePanels();
-        SceneManager.LoadScene("TutMS2");
+        MainGame.SetActive(true);
     }
     // Start is called before the first frame update
     void Start()

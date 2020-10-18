@@ -56,9 +56,7 @@ public class DataService
             var loadDb = Application.dataPath + "/StreamingAssets/" + DatabaseName;  // this is the path to your StreamingAssets in iOS
                                                                                      // then save to Application.persistentDataPath
             File.Copy(loadDb, filepath);
-
 #endif
-
             Debug.Log("Database written");
         }
 
@@ -68,7 +66,6 @@ public class DataService
         Debug.Log("Final PATH: " + dbPath);
     }
 
-
 	public void CreateDB()
     {
         // remove these once testing is sorted
@@ -77,7 +74,6 @@ public class DataService
         // _connection.DropTable<Player>();
 
         // creating the schema
-
         _connection.CreateTable<Player>();
         _connection.CreateTable<PlayerInventory>();
         _connection.CreateTable<Room>();
@@ -85,10 +81,12 @@ public class DataService
 
     public void storeInventory(int pPlayerID, List<string> pPlayerInventoryList)
     {
+        //For each item in the inventory it is added to the players inventory to be stored
         foreach(string anItem in pPlayerInventoryList)
         {
             PlayerInventory anInventoryItem = new PlayerInventory
             {
+                //Stores the inventory items and the corresponding playerID
                 InventoryItem = anItem,
                 PlayerID = pPlayerID
             };
@@ -98,6 +96,7 @@ public class DataService
 
     public List<string> getInventory(int pPlayerID)
     {
+        //Gets the stored inventory where the player id entered is equal to the player id in the SQL
         List<string> inventoryItemList = new List<string>();
         foreach(PlayerInventory anItem in _connection.Table<PlayerInventory>().Where(inventory => inventory.PlayerID == pPlayerID).ToList())
         {
@@ -108,11 +107,14 @@ public class DataService
 
     public void storePlayer(Player pPlayer)
     {
+        //Inserts the player into the player table
         _connection.InsertOrReplace(pPlayer);
     }
 
     public Player getPlayer(string pPlayerName, string pPassword)
     {
+        //gets the player information for when there is a login
+        //It is based on the username and password credentials are entered in login
         return _connection.Table<Player>().Where(player => player.Name == pPlayerName && player.Password == pPassword).FirstOrDefault();
     }
 
@@ -123,6 +125,7 @@ public class DataService
 
     public Room GetPlayerLocation(Player aPlayer)
     {
+        //Gets the locations based on rooms
         return GetLocation(aPlayer.Room);
     }
 
@@ -133,6 +136,7 @@ public class DataService
 
     public Player storeNewPlayer(string pName, string pPassword, string pRoom)
     {
+        //When a new player is registered they are added to the player table
         Player player = new Player
         {
             Name = pName,

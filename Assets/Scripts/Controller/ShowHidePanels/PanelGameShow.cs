@@ -20,6 +20,11 @@ public class PanelGameShow : MonoBehaviour
     private string txtPassword;
     private string feedback;
 
+    private void Start()
+    {
+        Update();
+    }
+
     private void Update()
     {
         txtUsername = TxtUsername.GetComponent<InputField>().text;
@@ -28,6 +33,7 @@ public class PanelGameShow : MonoBehaviour
 
     public void ShowHidePanel()
     {
+        Debug.Log("Entered admin user: " + txtPassword + "," + txtUsername);
         if (txtUsername == "admin" && txtPassword == "admin")
         {
             Panel.gameObject.SetActive(true);
