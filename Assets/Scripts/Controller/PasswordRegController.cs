@@ -36,7 +36,7 @@ public class PasswordRegController : MonoBehaviour
     }
     public void CheckPassword()
     {
-        HidePanels();
+        //HidePanels();
         switch (GameModel.CheckPassword(Playername.text, Password.text))
         {
             case GameModel.PasswdMode.OK:
