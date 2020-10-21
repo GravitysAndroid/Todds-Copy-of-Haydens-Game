@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scripts\View\Go.cs" />
     <Compile Include="Assets\Scripts\View\Inventory.cs" />
     <Compile Include="Assets\Scripts\View\Save.cs" />
+    <Compile Include="Assets\Scripts\View\Score.cs" />
     <Compile Include="Assets\Scripts\View\Take.cs" />
     <Compile Include="Assets\Scripts\View\TextInput.cs" />
     <Compile Include="Assets\Scripts\View\Use.cs" />

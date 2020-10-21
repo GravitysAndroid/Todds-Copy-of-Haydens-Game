@@ -34,6 +34,9 @@ namespace Assets.Scripts.Model
         public static bool isSameRoom = false;
         public static Player currentPlayer = new Player();
 
+        public static string ScoreText = "Your score is ";
+        public static int Score;
+
         public static void StoreGame()
         {
             //Following is a set up for testing
@@ -46,6 +49,7 @@ namespace Assets.Scripts.Model
             ds.storePlayer(currentPlayer);
             ds.storeInventory(currentPlayer.ID, nounsInInventory);
         }
+
         public static bool GetGame()
         {
             // IF a Game can be got return true;
@@ -54,6 +58,12 @@ namespace Assets.Scripts.Model
             Debug.Log("GetGame To be done ");
 
             return result;
+        }
+
+        public static string ReturnScore()
+        {
+            Score = 0;
+            return ScoreText + Score;
         }
 
         // enum type for value that is one of these.
