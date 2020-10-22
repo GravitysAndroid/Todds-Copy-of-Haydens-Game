@@ -12,13 +12,14 @@ namespace Assets.Scripts.Model
     {
         //Creates the actual database file
         public static DataService ds = new DataService("HaydenGame.db");
-
+        public static Dictionary<string,Room> roomDictionary = new Dictionary<string, Room>();
         //Creates interactables and roomNav variables
         public static InteractableItems interactableItems;
         public static RoomNavigation roomNavigation;
         //Creates types of room
         public static Room currentLocale;
         public static Room startLocation;
+        private static RoomDTO currentLocaleDTO;
 
         //Creates all of the lists and dictionaries to hold data
         public static List<string> nounsInInventory = new List<string>();
@@ -36,6 +37,8 @@ namespace Assets.Scripts.Model
 
         public static string ScoreText = "Your score is ";
         public static int Score;
+
+        
 
         public static void StoreGame()
         {
@@ -90,7 +93,10 @@ namespace Assets.Scripts.Model
                     //If the password entered is correct it returns ok
                     result = GameModel.PasswdMode.OK;
                     GameModel.currentPlayer = aPlayer; // << WATCHOUT THIS IS A SIDE EFFECT
-                    GameModel.currentLocale = GameModel.ds.GetPlayerLocation(GameModel.currentPlayer);
+                    GameModel.currentLocaleDTO = GameModel.ds.GetPlayerLocation(GameModel.currentPlayer);
+                    //GameModel.currentLocale = new 
+                    GameModel.currentLocale.description = GameModel.currentLocaleDTO.description;
+                    GameModel.currentLocale.roomName = GameModel.currentLocaleDTO.roomName;
                 }
                 else
                 {
@@ -107,27 +113,8 @@ namespace Assets.Scripts.Model
         public static void RegisterPlayer(string pName, string pPassword)
         {
             //Registers the current player and sends the details to the store new player method
-            //
-            //
-            //
-            //
-            //
-            // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-            // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-            // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-            // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-            GameModel.currentPlayer = GameModel.ds.storeNewPlayer(pName, pPassword, GameModel.currentLocale.roomName);
-            // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-            // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-            // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-            // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-            //
-            //
-            //
-            //
-            //
-            //
-            //
+            
+            GameModel.currentPlayer = GameModel.ds.storeNewPlayer(pName, pPassword, GameModel.roomNavigation.currentRoom.roomName);
         }
 
         public static void SetupGame()
@@ -135,25 +122,5 @@ namespace Assets.Scripts.Model
             //Purely runs the database creation method in the data service
             ds.CreateDB();
         }
-        //public static void MakeGame()
-        //{
-        //    // Only make a  game if we dont have locations
-        //    if (!GameModel.ds.haveLocations())
-        //    {
-        //        Location forest, castle;
-        //        currentLocale = GameModel.ds.storeNewLocation("Forest", " Run!! ");
-
-        //        forest = currentLocale;
-
-        //        forest.addLocation("North", "Castle", "Crocodiles");
-
-        //        castle = forest.getLocation("North");
-        //        castle.addLocation("South", forest);
-
-        //        startLocation = currentLocale; // this might be redundant
-        //    }
-        //    else
-        //        currentLocale = GameModel.ds.GetFirstLocation();
-        //}
     }
 }

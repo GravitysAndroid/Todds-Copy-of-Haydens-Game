@@ -69,14 +69,14 @@ public class DataService
 	public void CreateDB()
     {
         // remove these once testing is sorted
-        // _connection.DropTable<Location>(); 
-        // _connection.DropTable<ToFrom>();
-        // _connection.DropTable<Player>();
+        //_connection.DropTable<Player>();
+        //_connection.DropTable<PlayerInventory>();
+        //_connection.DropTable<RoomDTO>();
 
         // creating the schema
         _connection.CreateTable<Player>();
         _connection.CreateTable<PlayerInventory>();
-        _connection.CreateTable<Room>();
+        _connection.CreateTable<RoomDTO>();
     }
 
     public void storeInventory(int pPlayerID, List<string> pPlayerInventoryList)
@@ -118,20 +118,20 @@ public class DataService
         return _connection.Table<Player>().Where(player => player.Name == pPlayerName && player.Password == pPassword).FirstOrDefault();
     }
 
-    public IEnumerable<Room> GetLocations()
+    public IEnumerable<RoomDTO> GetLocations()
     {
-        return _connection.Table<Room>();
+        return _connection.Table<RoomDTO>();
     }
 
-    public Room GetPlayerLocation(Player aPlayer)
+    public RoomDTO GetPlayerLocation(Player aPlayer)
     {
         //Gets the locations based on rooms
         return GetLocation(aPlayer.Room);
     }
 
-    public Room GetLocation(string pRoom)
+    public RoomDTO GetLocation(string pRoom)
     {
-        return _connection.Table<Room>().Where(l => l.roomName == pRoom).FirstOrDefault();
+        return _connection.Table<RoomDTO>().Where(l => l.roomName == pRoom).FirstOrDefault();
     }
 
     public Player storeNewPlayer(string pName, string pPassword, string pRoom)
@@ -143,7 +143,7 @@ public class DataService
             Password = pPassword,
             Room = pRoom
         };
-        _connection.InsertOrReplace(player);
+        _connection.Insert(player);
         return player;
     }
 }
