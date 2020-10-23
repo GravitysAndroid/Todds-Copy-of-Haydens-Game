@@ -136,6 +136,7 @@ public class DataService
 
     public RoomDTO GetLocation(string pRoom)
     {
+        //Gets the room from the RoomDTO table
         return _connection.Table<RoomDTO>().Where(l => l.roomName == pRoom).FirstOrDefault();
     }
 
@@ -148,6 +149,7 @@ public class DataService
             Password = pPassword,
             Room = pRoom
         };
+        //Puts the players information into the player table
         _connection.Insert(player);
         return player;
     }

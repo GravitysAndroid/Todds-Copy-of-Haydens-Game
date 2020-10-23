@@ -11,7 +11,6 @@ public class RoomCollector : MonoBehaviour
     {
         //Sets the list of rooms to an array that can be pulled to set the players room
         Debug.Log(Rooms[0].roomName);
-        //int i = 0;
         for (int i = 0; i < 7; i++)
         {
             Room aRoom;
@@ -21,21 +20,16 @@ public class RoomCollector : MonoBehaviour
             {
                 GameModel.AllRooms = new Room[7];
             }
+
             Debug.Log("THIS IS ALL ROOMS");
             Debug.Log(GameModel.AllRooms);
+
+            //Takes the rooms and sets them out for the stored locations
             GameModel.AllRooms[i] = aRoom;
             RoomDTO aRoomDTO = new RoomDTO();
             aRoomDTO.ID = i;
             aRoomDTO.roomName = aRoom.roomName;
             GameModel.ds.StoreLocation(aRoomDTO);
         }
-            //GameModel.AllRooms[i] = aRoom;
-
-            //RoomDTO aRoomDTO = new RoomDTO();
-            //aRoomDTO.ID = i;
-            //aRoomDTO.roomName = aRoom.roomName;
-            //GameModel.ds.StoreLocation(aRoomDTO);
-            //Debug.Log(i.ToString() + " " + aRoomDTO.roomName);
-            //i++;
     }
 }
