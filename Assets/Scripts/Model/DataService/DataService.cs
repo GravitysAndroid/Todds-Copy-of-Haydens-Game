@@ -123,6 +123,11 @@ public class DataService
         return _connection.Table<RoomDTO>();
     }
 
+    public void StoreLocation(RoomDTO pRoomDTO)
+    {
+        _connection.InsertOrReplace(pRoomDTO);
+    }
+
     public RoomDTO GetPlayerLocation(Player aPlayer)
     {
         //Gets the locations based on rooms

@@ -100,6 +100,8 @@ namespace Assets.Scripts.Model
                     result = GameModel.PasswdMode.OK;
                     GameModel.currentPlayer = aPlayer; // << WATCHOUT THIS IS A SIDE EFFECT
                     GameModel.currentLocaleDTO = GameModel.ds.GetPlayerLocation(GameModel.currentPlayer);
+                    Debug.Log("THIS IS CURRENT LOCATIONDTO");
+                    Debug.Log(GameModel.currentLocaleDTO);
                     GameModel.currentLocale = GameModel.AllRooms[currentLocaleDTO.ID];
                 }
                 else
