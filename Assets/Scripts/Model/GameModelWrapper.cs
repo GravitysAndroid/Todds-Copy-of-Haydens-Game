@@ -10,7 +10,7 @@ public class GameModelWrapper : MonoBehaviour
     {
         GameModel.ds.CreateDB();
         var rooms = Resources.LoadAll("Rooms", typeof(Room));
-        Debug.Log(rooms);
+        Debug.Log(rooms.Length);
 
     }
 }

@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Model\Player.cs" />
      <Compile Include="Assets\Scripts\Model\PlayerInventory.cs" />
      <Compile Include="Assets\Scripts\Model\Room.cs" />
+     <Compile Include="Assets\Scripts\Model\RoomCollector.cs" />
      <Compile Include="Assets\Scripts\View\ChangeRoomResponse.cs" />
      <Compile Include="Assets\Scripts\View\Examine.cs" />
      <Compile Include="Assets\Scripts\View\Exit.cs" />

@@ -12,6 +12,7 @@ public class Room : ScriptableObject
     /*The actual parts that make up the room, that can be edited*/
     public string description;
     public string roomName;
+    public int ID;
     public Exit[] exits;
     public InteractableObject[] interactableObjectsInRoom;
 
@@ -20,14 +21,8 @@ public class Room : ScriptableObject
 // DATA TRANSFER TEMPLATES these will become tables in the DB
 public class RoomDTO
 {
-    [PrimaryKey , AutoIncrement]
     public int ID { get; set; }
-    public string description { get; set; }
-    public string roomName { get; set; }
-
-    // 
-    //public Exit[] exits; see RoomExitDTO
-    //public InteractableObject[] interactableObjectsInRoom; see RoomInteractableDTO
+    public string roomName {get; set; }
 }
 
 // This connects a room to exits.

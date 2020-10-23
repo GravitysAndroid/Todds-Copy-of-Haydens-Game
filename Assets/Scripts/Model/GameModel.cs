@@ -12,14 +12,21 @@ namespace Assets.Scripts.Model
     {
         //Creates the actual database file
         public static DataService ds = new DataService("HaydenGame.db");
+
+        //Creates a dictionary for the rooms
         public static Dictionary<string,Room> roomDictionary = new Dictionary<string, Room>();
+
         //Creates interactables and roomNav variables
         public static InteractableItems interactableItems;
+
+        //Creates a room navigation which is used to interact with the scriptable objects
         public static RoomNavigation roomNavigation;
-        //Creates types of room
+
+        //Creates types of room and the room data transfer object
         public static Room currentLocale;
         public static Room startLocation;
         private static RoomDTO currentLocaleDTO;
+        public static Room[] AllRooms;
 
         //Creates all of the lists and dictionaries to hold data
         public static List<string> nounsInInventory = new List<string>();
@@ -35,10 +42,9 @@ namespace Assets.Scripts.Model
         public static bool isSameRoom = false;
         public static Player currentPlayer = new Player();
 
+        //Sets up variables for the scoring
         public static string ScoreText = "Your score is ";
         public static int Score;
-
-        
 
         public static void StoreGame()
         {
@@ -94,9 +100,7 @@ namespace Assets.Scripts.Model
                     result = GameModel.PasswdMode.OK;
                     GameModel.currentPlayer = aPlayer; // << WATCHOUT THIS IS A SIDE EFFECT
                     GameModel.currentLocaleDTO = GameModel.ds.GetPlayerLocation(GameModel.currentPlayer);
-                    //GameModel.currentLocale = new 
-                    GameModel.currentLocale.description = GameModel.currentLocaleDTO.description;
-                    GameModel.currentLocale.roomName = GameModel.currentLocaleDTO.roomName;
+                    GameModel.currentLocale = GameModel.AllRooms[currentLocaleDTO.ID];
                 }
                 else
                 {
