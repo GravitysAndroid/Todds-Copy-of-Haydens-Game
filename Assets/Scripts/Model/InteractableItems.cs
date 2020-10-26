@@ -10,7 +10,7 @@ public class InteractableItems : MonoBehaviour
     /*Creates dictionaries for the examine, take and use action*/
     public Dictionary<string, string> examineDictionary { get { return GameModel.examineDictionary; } set { GameModel.examineDictionary = value; } }
     public Dictionary<string, string> takeDictionary { get { return GameModel.takeDictionary; } set { GameModel.takeDictionary = value; } }
-    Dictionary<string, ActionResponse> useDictionary { get { return GameModel.useDictionary; } set { GameModel.useDictionary = value; } }
+    public Dictionary<string, ActionResponse> useDictionary { get { return GameModel.useDictionary; } set { GameModel.useDictionary = value; } }
 
     [HideInInspector] public List<string> nounsInRoom { get { return GameModel.nounsInRoom; } set { GameModel.nounsInRoom = value; } }
 
@@ -20,7 +20,6 @@ public class InteractableItems : MonoBehaviour
     
     private void Awake()
     {
-        //GameObject.DontDestroyOnLoad(gameObject);
         /*On awake, get the game controller component*/
         controller = GetComponent<GameController>();
     }

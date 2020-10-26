@@ -18,6 +18,7 @@ public class PasswordRegController : MonoBehaviour
         RegPanel.SetActive(false);
         PasspromptPanel.SetActive(false);
     }
+
     private void ShowRegPanel()
     {
         RegPanel.SetActive(true);

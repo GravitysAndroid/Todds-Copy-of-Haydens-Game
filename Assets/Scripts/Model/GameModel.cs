@@ -49,14 +49,23 @@ namespace Assets.Scripts.Model
         public static void StoreGame()
         {
             //Following is a set up for testing
-            currentPlayer.ID = 1;
-            currentPlayer.Name = "Hayden";
-            currentPlayer.Room = roomNavigation.currentRoom.roomName;
-            currentPlayer.Password = "123";
+            //currentPlayer.ID = 1;
+            //currentPlayer.Name = "Hayden";
+            //currentPlayer.Room = roomNavigation.currentRoom.roomName;
+            //currentPlayer.Password = "123";
             //End of test code
+
+            //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓!!!!!!!!!!!!!!!!!!!!!!!!IMPORTANT!!!!!!!!!!!!!!!!!!!!!!!!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+            //This sets the players location to whatever the current room name is. The text on screen DOES NOT update just yet
+            //It DOES update in the database, by using DB Browser for SQLite you can see the tables update
+            //In future I will store the game log so when the player logs in, it will repeat the log
+            currentPlayer.Room = GameModel.roomNavigation.currentRoom.roomName;
+            //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑!!!!!!!!!!!!!!!!!!!!!!!!IMPORTANT!!!!!!!!!!!!!!!!!!!!!!!!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
 
             ds.storePlayer(currentPlayer);
             ds.storeInventory(currentPlayer.ID, nounsInInventory);
+            ds.StoreLocation(currentLocaleDTO);
         }
 
         public static bool GetGame()

@@ -124,7 +124,7 @@ public class DataService
     }
 
     public void StoreLocation(RoomDTO pRoomDTO)
-    {
+    {    
         _connection.InsertOrReplace(pRoomDTO);
     }
 
