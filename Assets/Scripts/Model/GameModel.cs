@@ -62,7 +62,6 @@ namespace Assets.Scripts.Model
             currentPlayer.Room = GameModel.roomNavigation.currentRoom.roomName;
             //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑!!!!!!!!!!!!!!!!!!!!!!!!IMPORTANT!!!!!!!!!!!!!!!!!!!!!!!!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
-
             ds.storePlayer(currentPlayer);
             ds.storeInventory(currentPlayer.ID, nounsInInventory);
             ds.StoreLocation(currentLocaleDTO);

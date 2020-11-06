@@ -13,6 +13,7 @@ using System.IO;
 public class DataService
 {
     private SQLiteConnection _connection;
+    public SQLiteConnection Connection { get { return _connection; } }
 
     public DataService(string DatabaseName)
     {

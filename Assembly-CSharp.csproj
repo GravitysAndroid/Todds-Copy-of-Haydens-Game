@@ -77,6 +77,9 @@
      <Compile Include="Assets\Scripts\Model\PlayerInventory.cs" />
      <Compile Include="Assets\Scripts\Model\Room.cs" />
      <Compile Include="Assets\Scripts\Model\RoomCollector.cs" />
+     <Compile Include="Assets\Scripts\NetWorking\AkeakeState.cs" />
+     <Compile Include="Assets\Scripts\NetWorking\JSONDropService.cs" />
+     <Compile Include="Assets\Scripts\TestJsnDropNetworkService.cs" />
      <Compile Include="Assets\Scripts\View\ChangeRoomResponse.cs" />
      <Compile Include="Assets\Scripts\View\Examine.cs" />
      <Compile Include="Assets\Scripts\View\Exit.cs" />
@@ -269,6 +272,9 @@
  </Reference>
  <Reference Include="UnityEditor">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
+ </Reference>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>C:/Workspace/Year2/SDV/Github/Todds-Copy-of-Haydens-Game/Assets/Plugins/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.5f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
