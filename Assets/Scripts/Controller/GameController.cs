@@ -134,5 +134,6 @@ public class GameController : MonoBehaviour
     {
         /*Adds new line inbetween each output*/
         actionLog.Add(stringToAdd + "\n");
+        
     }
 }

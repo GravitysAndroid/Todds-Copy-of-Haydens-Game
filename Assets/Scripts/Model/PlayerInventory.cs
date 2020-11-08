@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInventory
 {
-    public int PlayerID
+    public string PlayerName
     {
         get;
         set;

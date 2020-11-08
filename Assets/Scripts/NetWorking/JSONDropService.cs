@@ -158,6 +158,7 @@ public class JSONDropService
         }
     }//Store
     #endregion
+
     #region retrieve ALL records
     public void All<T,S>(ReceiveRecordDelegateList<T> pReceiveSuccessGoesHere, ReceiveRecordDelegate<S> pReceiveFailGoesHere)
     {
@@ -189,6 +190,7 @@ public class JSONDropService
         }
     }//SELECT WHERE
     #endregion
+
     #region DELETE records WHERE
     public void Delete<T, S>(string pStrWhere, ReceiveRecordDelegate<S> pReceiveGoesHere)
     {
@@ -204,6 +206,7 @@ public class JSONDropService
         }
     }//DELETE WHERE
     #endregion
+
     #region DROP table
     public void Drop<T, S>(ReceiveRecordDelegate<S> pReceiveGoesHere)
     {
@@ -220,6 +223,7 @@ public class JSONDropService
     }//DROP table
 
     #endregion
+
     #region Http with JSONDrop - JSON to/from <T> and List<T>
 
     private string ListToJson<T>(List<T> pRecordList)

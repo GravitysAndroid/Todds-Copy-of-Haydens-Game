@@ -67,7 +67,24 @@ public class DataService
         Debug.Log("Final PATH: " + dbPath);
     }
 
-	public void CreateDB()
+    public void jsnReceiverDel(JsnReceiver pReceived)
+    {
+        Debug.Log(pReceived.JsnMsg + " ..." + pReceived.Msg);
+        // To do: parse and produce an appropriate response
+    }
+
+    public void jsnListReceiverDel(List<Player> pReceivedList)
+    {
+        Debug.Log("Received items " + pReceivedList.Count());
+        foreach (Player lcReceived in pReceivedList)
+        {
+            Debug.Log("Received {" + lcReceived.Password + "," + lcReceived.Room + "," + lcReceived.Name + "," + lcReceived.Score + "}");
+        }
+
+        // To do: produce an appropriate response
+    }
+
+    public void CreateDB()
     {
         // remove these once testing is sorted
         //_connection.DropTable<Player>();
@@ -78,9 +95,18 @@ public class DataService
         _connection.CreateTable<Player>();
         _connection.CreateTable<PlayerInventory>();
         _connection.CreateTable<RoomDTO>();
+
+        //Create table Player
+        jsDrop.Create<Player, JsnReceiver>(new Player
+        {
+            Room = "UUUUUUUUUUUUUUUUUUUUUUUUUUU",
+            Password = "***************************",
+            Name = "UUUUUUUUUUUUUUUUUUUUUUUUUUU",
+            Score = 111111
+        }, jsnReceiverDel);
     }
 
-    public void storeInventory(int pPlayerID, List<string> pPlayerInventoryList)
+    public void storeInventory(string pPlayerName, List<string> pPlayerInventoryList)
     {
         //For each item in the inventory it is added to the players inventory to be stored
         foreach(string anItem in pPlayerInventoryList)
@@ -89,17 +115,17 @@ public class DataService
             {
                 //Stores the inventory items and the corresponding playerID
                 InventoryItem = anItem,
-                PlayerID = pPlayerID
+                PlayerName = pPlayerName
             };
             _connection.InsertOrReplace(anInventoryItem);
         }
     }
 
-    public List<string> getInventory(int pPlayerID)
+    public List<string> getInventory(string pPlayerName)
     {
         //Gets the stored inventory where the player id entered is equal to the player id in the SQL
         List<string> inventoryItemList = new List<string>();
-        foreach(PlayerInventory anItem in _connection.Table<PlayerInventory>().Where(inventory => inventory.PlayerID == pPlayerID).ToList())
+        foreach(PlayerInventory anItem in _connection.Table<PlayerInventory>().Where(inventory => inventory.PlayerName == pPlayerName).ToList())
         {
             inventoryItemList.Add(anItem.InventoryItem);   
         }
@@ -141,14 +167,15 @@ public class DataService
         return _connection.Table<RoomDTO>().Where(l => l.roomName == pRoom).FirstOrDefault();
     }
 
-    public Player storeNewPlayer(string pName, string pPassword, string pRoom)
+    public Player storeNewPlayer(string pName, string pPassword, string pRoom, int pScore)
     {
         //When a new player is registered they are added to the player table
         Player player = new Player
         {
             Name = pName,
             Password = pPassword,
-            Room = pRoom
+            Room = pRoom,
+            Score = pScore
         };
         //Puts the players information into the player table
         _connection.Insert(player);

@@ -5,13 +5,6 @@ using SQLite4Unity3d;
 
 public class Player
 {
-    [AutoIncrement, PrimaryKey]
-    public int ID
-    {
-        get;
-        set;
-    }
-
     public string Name
     {
         get;
@@ -30,5 +23,9 @@ public class Player
         set;
     }
 
-
+    public int Score
+    {
+        get;
+        set;
+    }
 }

@@ -46,6 +46,8 @@ namespace Assets.Scripts.Model
         public static string ScoreText = "Your score is ";
         public static int Score;
 
+        public static JSONDropService jsDrop = new JSONDropService { Token = "6af89c87-4bff-4941-aa38-d306bf9b5690" };
+
         public static void StoreGame()
         {
             //Following is a set up for testing
@@ -53,6 +55,7 @@ namespace Assets.Scripts.Model
             //currentPlayer.Name = "Hayden";
             //currentPlayer.Room = roomNavigation.currentRoom.roomName;
             //currentPlayer.Password = "123";
+            //currentPlayer.Score = 0
             //End of test code
 
             //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓!!!!!!!!!!!!!!!!!!!!!!!!IMPORTANT!!!!!!!!!!!!!!!!!!!!!!!!↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
@@ -62,9 +65,16 @@ namespace Assets.Scripts.Model
             currentPlayer.Room = GameModel.roomNavigation.currentRoom.roomName;
             //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑!!!!!!!!!!!!!!!!!!!!!!!!IMPORTANT!!!!!!!!!!!!!!!!!!!!!!!!↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
-            ds.storePlayer(currentPlayer);
-            ds.storeInventory(currentPlayer.ID, nounsInInventory);
+            ds.storeInventory(currentPlayer.Name, nounsInInventory);
             ds.StoreLocation(currentLocaleDTO);
+            Score = Score + 1;
+
+            ds.storePlayer(currentPlayer);
+            var PlayerList = new List<Player>();
+            PlayerList.Add(currentPlayer);
+            
+            jsDrop.Store<Player, JsnReceiver>(PlayerList, jsnReceiverDel);
+
         }
 
         public static bool GetGame()
@@ -128,7 +138,7 @@ namespace Assets.Scripts.Model
         {
             //Registers the current player and sends the details to the store new player method
             
-            GameModel.currentPlayer = GameModel.ds.storeNewPlayer(pName, pPassword, GameModel.roomNavigation.currentRoom.roomName);
+            GameModel.currentPlayer = GameModel.ds.storeNewPlayer(pName, pPassword, GameModel.roomNavigation.currentRoom.roomName, Score);
         }
 
         public static void SetupGame()
