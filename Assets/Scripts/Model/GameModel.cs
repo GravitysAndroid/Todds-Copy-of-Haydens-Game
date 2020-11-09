@@ -73,7 +73,7 @@ namespace Assets.Scripts.Model
             var PlayerList = new List<Player>();
             PlayerList.Add(currentPlayer);
             
-            jsDrop.Store<Player, JsnReceiver>(PlayerList, jsnReceiverDel);
+            jsDrop.Store<Player, JsnReceiver>(PlayerList, ds.jsnReceiverDel);
 
         }
 

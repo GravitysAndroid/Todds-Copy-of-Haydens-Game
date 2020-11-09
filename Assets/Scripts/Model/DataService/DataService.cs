@@ -97,7 +97,7 @@ public class DataService
         _connection.CreateTable<RoomDTO>();
 
         //Create table Player
-        jsDrop.Create<Player, JsnReceiver>(new Player
+        GameModel.jsDrop.Create<Player, JsnReceiver>(new Player
         {
             Room = "UUUUUUUUUUUUUUUUUUUUUUUUUUU",
             Password = "***************************",
