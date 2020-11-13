@@ -68,11 +68,9 @@ public class JSONDropService
         string currentJsn = "";
 
         foreach (char currentChar in pJsnString)
-        {
-            
+        {         
             switch (currentState)
             {
-
                 case JsnPState.JSONSkip:
                     if(currentChar == '{')
                     {
