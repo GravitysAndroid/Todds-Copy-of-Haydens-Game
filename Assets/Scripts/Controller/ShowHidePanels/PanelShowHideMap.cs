@@ -7,6 +7,12 @@ public class PanelShowHideMap : MonoBehaviour
 {
     /*Sets a panel game object and a counter*/
     public GameObject Panel;
+    public GameObject MainGame;
+    public GameObject LoginPanel;
+
+    //Variable declaration
+    public int Score;
+    public Text ScoreText;
     int counter;
 
     public void ShowHidePanel()
@@ -16,10 +22,12 @@ public class PanelShowHideMap : MonoBehaviour
         if (counter % 2 == 1)
         {
             Panel.gameObject.SetActive(true);
+            LoginPanel.gameObject.SetActive(false);
         }
         else
         {
             Panel.gameObject.SetActive(false);
+            MainGame.gameObject.SetActive(true);
         }
     }
 }

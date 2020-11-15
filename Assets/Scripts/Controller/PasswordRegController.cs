@@ -12,6 +12,7 @@ public class PasswordRegController : MonoBehaviour
     public InputField Playername;
     public InputField Password;
     public GameObject MainGame;
+    public GameObject LoginPanel;
 
     private void HidePanels()
     {
@@ -43,6 +44,7 @@ public class PasswordRegController : MonoBehaviour
             case GameModel.PasswdMode.OK:
                 HidePanels();
                 MainGame.SetActive(true);
+                LoginPanel.SetActive(false);
                 break;
             case GameModel.PasswdMode.NeedName:
                 ShowRegPanel();

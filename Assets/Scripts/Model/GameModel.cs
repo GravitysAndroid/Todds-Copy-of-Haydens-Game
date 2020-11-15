@@ -74,7 +74,6 @@ namespace Assets.Scripts.Model
             PlayerList.Add(currentPlayer);
             
             jsDrop.Store<Player, JsnReceiver>(PlayerList, ds.jsnReceiverDel);
-
         }
 
         public static bool GetGame()
